@@ -64,27 +64,41 @@ header .logo img:hover {
     box-shadow: 0 6px 12px rgba(255, 204, 0, 0.9);
 }
 
-/* Redes sociales en el header */
-header .redes-sociales {
-    margin-top: 15px;
+/* Redes sociales */
+.redes-sociales {
+    margin-top: 20px;
+    display: flex; /* Agrega flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    gap: 20px; /* Espacio entre íconos */
 }
 
-header .redes-sociales a {
+.redes-sociales a {
     display: inline-block;
-    margin: 0 10px;
-    font-size: 24px;
+    margin: 0 15px;
+    font-size: 40px;
     color: #ffffff;
     text-decoration: none;
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
-header .redes-sociales a:hover {
-    color: #ffcc00;
+.redes-sociales a:hover {
+    color: rgb(201, 175, 29); /* Color dorado */
     transform: scale(1.2);
 }
 
-
 /* Menú Vertical */
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 .menuVertical {
     position: fixed;
     top: 50%;
@@ -96,8 +110,56 @@ header .redes-sociales a:hover {
     width: 60px;
     transition: width 0.3s ease;
     z-index: 10;
+    animation: slideIn 0.5s ease; /* Aplica animación al cargar */
 }
 
+.menu li {
+    margin: 20px 0;
+    opacity: 0; /* Oculta inicialmente para la animación */
+    animation: fadeIn 0.5s ease forwards; /* Aplica la animación de entrada */
+}
+
+.menu li:nth-child(1) {
+    animation-delay: 0.2s;
+}
+.menu li:nth-child(2) {
+    animation-delay: 0.4s;
+}
+.menu li:nth-child(3) {
+    animation-delay: 0.6s;
+}
+.menu li:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+/* Animación de entrada gradual */
+@keyframes fadeIn {
+    from {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Hover animado en los enlaces */
+.menu a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 12px 10px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    border-radius: 0 10px 10px 0;
+}
+
+.menu a:hover {
+    background-color: #444;
+    color: rgb(201, 175, 29);
+    transform: scale(1.1); /* Efecto de escala */
+}
 .menuVertical:hover {
     width: 220px;
 }
@@ -106,19 +168,8 @@ header .redes-sociales a:hover {
     list-style: none;
 }
 
-.menu li {
-    margin: 20px 0;
-}
 
-.menu a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #ffffff;
-    padding: 12px 10px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    border-radius: 0 10px 10px 0;
-}
+
 
 .menu i {
     font-size: 24px;
@@ -136,10 +187,7 @@ header .redes-sociales a:hover {
     opacity: 1;
 }
 
-.menu a:hover {
-    background-color: #444;
-    color: rgb(201, 175, 29);
-}
+
 
 .menu a:hover i {
     transform: scale(1.2);
@@ -263,8 +311,7 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
-
-.contacto {
+    .contacto {
     background: linear-gradient(135deg, #1a1a1a, #333333); /* Fondo con degradado oscuro */
     padding: 60px 20px;
     border-radius: 16px;
@@ -307,6 +354,8 @@ footer a:hover {
     gap: 20px;
     align-items: center;
     justify-content: center;
+    padding: 20px;
+    margin: 0 auto; /* Centra el formulario horizontalmente */
 }
 
 .contacto-formulario input,
@@ -315,22 +364,30 @@ footer a:hover {
     max-width: 600px;
     padding: 15px;
     font-size: 16px;
-    border-radius: 10px;
-    border: none;
+    border-radius: 12px;
+    border: 2px solid transparent;
     outline: none;
-    background: rgba(255, 255, 255, 0.9); /* Fondo claro */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    background: rgba(255, 255, 255, 0.85); /* Fondo claro y más sutil */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    color: #333;
+    text-align: left; /* Asegura la alineación de texto */
+}
+
+.contacto-formulario input::placeholder,
+.contacto-formulario textarea::placeholder {
+    color: #999; /* Placeholder más visible */
 }
 
 .contacto-formulario input:focus,
 .contacto-formulario textarea:focus {
+    border-color: #c99f1d; /* Color de foco */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    background-color: #f8f8f8;
+    background-color: #fff;
 }
 
 .contacto-formulario textarea {
-    resize: none;
+    resize: vertical; /* Permitir solo redimensionamiento vertical */
     height: 150px;
 }
 
@@ -341,16 +398,23 @@ footer a:hover {
     font-size: 18px;
     font-weight: bold;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .contacto-formulario button:hover {
-    background-color: #ffcc00;
-    transform: scale(1.05);
+    background: #ffcc00; /* Un color uniforme al pasar el mouse */
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
+
+.contacto-formulario button:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 
 
 /* Iconos */
